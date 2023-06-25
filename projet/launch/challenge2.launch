@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find projet)/worlds/Projet2023.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+
+ <!-- Spawn turtlebot in Gazebo -->
+
+<param name="robot_description" command="$(find xacro)/xacro $(find projet)/urdf/turtlebot3.urdf.xacro " />
+
+<!--node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_burger -x 0.87 -y -1.74 -z 0.0 -Y 0 -param robot_description" /--> 
+
+
+<!-- respwan in front of obstacle-->>
+<!--node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_burger -x 1.58 -y 0.3 -z 0.0 -Y 1.57 -param robot_description" /--> 
+
+<!-- respwan in front of corridor-->>
+<node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_burger -x 1 -y 1.5 -z 0.0 -Y -1.57 -param robot_description" /> 
+
+<!-- respwan in front of clutter-->>
+<!--node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_burger -x -1.85 -y -1 -z 0.0 -Y -1.57 -param robot_description" /-->
+
+
+
+<!-- Green -->
+<param name="/lh0" type="int" value="40"/>
+<param name="/ls0" type="int" value="50"/>
+<param name="/lv0" type="int" value="50"/>
+
+<param name="/hh0" type="int" value="90"/>
+<param name="/hs0" type="int" value="255"/>
+<param name="/hv0" type="int" value="255"/>
+
+
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+
+  <!-- Run mybot_teleop node -->
+  
+  <node pkg="mybot_teleop" name="teleop" type="mybot_teleop_gazebo.py" 
+        output="screen" required="true"/>
+        
+<!-- Run respawn node to put the robot at the beginning of the circuit -->        
+<node name="respawn_robot" pkg="projet" type="respawn.py" output="screen">
+        <remap from="~" to="/"/>
+        <param name="respawn_key" value="r"/>
+</node>
+
+  <!-- Run lane following node -->
+  
+  <!--node pkg="projet" name="lane_following" type="lane_following.py" 
+        output="screen" required="true"/-->
+        
+  <!-- Run obstacle avoidance node -->
+  
+  <!--node pkg="projet" name="obstacle" type="test_obst.py" 
+        output="screen" required="true"/-->
+  
+  <!--Run corridor navigation  node -->
+  
+  <node pkg="projet" name="corridor" type="Corridor_gazebo.py" 
+        output="screen" required="true"/>
+ <node pkg="projet" name="Couloir" type="Couloir.py" 
+        output="screen" required="true"/>
+  
+
+
+<!-- Launch Rviz  -->
+<!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find projet/rviz/config.rviz"/-->
+
+
+</launch>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find projet)/worlds/Projet2023.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+<param name="robot_description" command="$(find xacro)/xacro $(find projet)/urdf/turtlebot3.urdf.xacro " />
+<node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_burger -x 0.87 -y -1.74 -z 0.0 -Y 0 -param robot_description" /> 
+
+<!-- Yellow -->
+<param name="/lh1" type="int" value="20"/>
+<param name="/ls1" type="int" value="100"/>
+<param name="/lv1" type="int" value="100"/>
+
+<param name="/hh1" type="int" value="30"/>
+<param name="/hs1" type="int" value="255"/>
+<param name="/hv1" type="int" value="255"/>
+
+<!-- Green -->
+<!--param name="/lh1" type="int" value="70"/>
+<param name="/ls1" type="int" value="50"/>
+<param name="/lv1" type="int" value="50"/>
+
+<param name="/hh1" type="int" value="100"/>
+<param name="/hs1" type="int" value="255"/>
+<param name="/hv1" type="int" value="255"/-->
+
+<!-- WHITE -->
+
+<param name="/lh2" type="int" value="0"/>
+<param name="/ls2" type="int" value="0"/>
+<param name="/lv2" type="int" value="255"/>
+
+<param name="/hh2" type="int" value="180"/>
+<param name="/hs2" type="int" value="0"/>
+<param name="/hv2" type="int" value="255"/>
+
+<!-- Red 0 - 10 -->
+
+<param name="/lh3" type="int" value="0"/>
+<param name="/ls3" type="int" value="50"/>
+<param name="/lv3" type="int" value="50"/>
+
+<param name="/hh3" type="int" value="10"/>
+<param name="/hs3" type="int" value="255"/>
+<param name="/hv3" type="int" value="255"/>
+
+<!-- Red 170 - 180 -->
+
+<param name="/lh4" type="int" value="150"/>
+<param name="/ls4" type="int" value="100"/>
+<param name="/lv4" type="int" value="100"/>
+
+<param name="/hh4" type="int" value="179"/>
+<param name="/hs4" type="int" value="255"/>
+<param name="/hv4" type="int" value="255"/>
+
+
+<param name="/real_sit" type="int" value="0"/>
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+<node name="lane_following" pkg="projet" type="lane_following.py" output="screen"/>
+
+<node name="respawn_robot" pkg="projet" type="respawn.py" output="screen">
+        <remap from="~" to="/"/>
+        <param name="respawn_key" value="r"/>
+    </node>
+
+<!--node name="Couloir" pkg="projet" type="Couloir.py" output="screen"/-->
+</launch>
