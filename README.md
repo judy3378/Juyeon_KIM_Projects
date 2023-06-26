@@ -13,9 +13,9 @@ For Challenge 2 : Corridor, `src/Corridor_gazebo.py` for simulation under Gazebo
 Further information can be found in `Project_Description` and `Project_Report`.
 
 
-### Simulation
+### Install and Run
 
-ROS and Gazebo are required to run the simulations.
+[ROS Noetic](http://wiki.ros.org/ROS/Installation) and [Gazebo](https://gazebosim.org/docs) are required to run the simulations.
 
 To run the simulation for :
  * Challenge 1: run in terminal `roslaunch project challenge1.launch`
