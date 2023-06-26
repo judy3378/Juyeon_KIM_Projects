@@ -1,6 +1,6 @@
 # ROS Project
 
-### Context, goal, and evaluation of the project
+### Context
 
 The main objective of this project is to control a Turtlebot 3 burger mobile robot in a simulated and real environment. The goal of this project is to develop navigation skills and test the robot’s sensorimotor capabilities by making it navigate from a starting position to a goal position while solving different tasks on the path.
 The project consists of three challenges that will progressively exploit the robot’s sensors, including images obtained from a simulated(/camera), a real camera (/usb cam) to detect and follow lines, and laser scans obtained from a simulated/real LDS to detect and avoid obstacles.
