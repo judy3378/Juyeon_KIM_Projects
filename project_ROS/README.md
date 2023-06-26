@@ -13,7 +13,7 @@ For Challenge 1: [lane following](/project_ROS/src/lane_following.py), the main 
 
 For Challenge 2: Corridor, `src/Corridor_gazebo.py` for simulation under Gazebo, and `src/Corridor_robot.py` for real robot use.
 
-Further information can be found in [Project_Description](../Project_Description.pdf) and [Project_Report](../Project_Report.pdf).
+Further information can be found in [Project_Description](/project_ROS/Project_Description.pdf) and [Project_Report](/project_ROS/Project_Report.pdf).
 
 
 ### Install and Run
