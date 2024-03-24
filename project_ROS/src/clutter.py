@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -
+# Author : Juyeon Kim
+# Tested
+
 import rospy
 from geometry_msgs.msg import Twist, Pose2D, Point
 from sensor_msgs.msg import LaserScan, Image, CompressedImage
