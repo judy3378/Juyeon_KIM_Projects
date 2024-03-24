@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Author : Juyeon Kim
+# Tested
 
 import rospy
 from std_msgs.msg import String
