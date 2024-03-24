@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Author : Juyeon Kim
+# Tested
 
 import rospy
 from cv_bridge import CvBridge, CvBridgeError
